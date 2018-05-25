@@ -45,9 +45,8 @@ public class Car : MonoBehaviour {
         }
         if (dist < 7.5)
         {
-            Debug.Log("Decelerate");
             decelerate = true;
-            speed = Mathf.Lerp(speed, 0, brakeForce * Time.deltaTime);
+            speed = Mathf.Lerp(speed, 0, brakeForce * (10.0f - dist) * Time.deltaTime);
         }
         else
         {
@@ -60,9 +59,13 @@ public class Car : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        MovingType type;
+
         if (!other.gameObject.CompareTag("Moving"))
             return;
-        objects.Add(other.gameObject.GetComponent<movingObject>().type);
+        type = other.gameObject.GetComponent<movingObject>().type;
+        objects.Add(type);
+        other.gameObject.GetComponent<CarCanva>().addObject(type);
         gameObjects.Add(other.gameObject);
     }
 
@@ -71,6 +74,7 @@ public class Car : MonoBehaviour {
         if (!other.gameObject.CompareTag("Moving"))
             return;
         objects.Remove(other.gameObject.GetComponent<movingObject>().type);
+        other.gameObject.GetComponent<CarCanva>().removeObject(type);
         gameObjects.Remove(other.gameObject);
     }
 }
