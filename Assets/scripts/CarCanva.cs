@@ -35,13 +35,13 @@ public class CarCanva : MonoBehaviour {
     {
         int indexDisp = displayedType.IndexOf(t);
 
-        Debug.Log(displayedNb + 1 > maxDisplay);
-        Debug.Log(indexDisp);
+        Debug.Log(t);
         if (displayedNb  + 1 > maxDisplay || indexDisp != -1)
             return;
         displayedNb++;
         ImageObject[displayedNb - 1].SetActive(true);
         displayedType[displayedNb - 1] = t;
+        updateImages();
     }
 
     public void removeObject(MovingType t)
@@ -56,5 +56,6 @@ public class CarCanva : MonoBehaviour {
             displayedType[i] = displayedType[i + 1];
         }
         displayedNb--;
+        updateImages();
     }
 }
