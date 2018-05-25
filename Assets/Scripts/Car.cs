@@ -13,6 +13,7 @@ public class Car : MonoBehaviour {
     public List<GameObject> gameObjects = new List<GameObject>();
     private AudioSource aus;
     public GameObject WarnLights;
+    public GameObject SafeLights;
     public float WarnTime;
 
     private CarCanva cc;
@@ -60,7 +61,7 @@ public class Car : MonoBehaviour {
         if (closest)
         {
             dist = Vector3.Distance(closest.transform.position, transform.position);
-            if (dist < 5 && speed > maxSpeed / 4)
+            if (dist < 5 && speed > maxSpeed / 10)
             {
                 StartCoroutine(Warn());
             }
@@ -77,6 +78,7 @@ public class Car : MonoBehaviour {
         if (speed < 0.05 && decelerate)
             speed = 0;
         transform.position += transform.forward * speed * Time.deltaTime;
+        SafeLights.SetActive(speed < 1 && objects.Any(s => s == MovingType.TRAFFIC_LIGHT));
     }
 
     private void OnTriggerEnter(Collider other)
