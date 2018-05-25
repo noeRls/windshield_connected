@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1295970725557432
 GameObject:
   m_ObjectHideFlags: 1
@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1762103994195582
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4490715320239300
 Transform:
   m_ObjectHideFlags: 1
@@ -166,8 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ImageSprite:
   - {fileID: 21300000, guid: 36d45e9ad1704cc4fb06eb07c2667774, type: 3}
-  - {fileID: 21300000, guid: 36d45e9ad1704cc4fb06eb07c2667774, type: 3}
-  - {fileID: 21300000, guid: 36d45e9ad1704cc4fb06eb07c2667774, type: 3}
+  - {fileID: 21300000, guid: f1bb046dd0f7bb047892e0b290543de0, type: 3}
+  - {fileID: 21300000, guid: 2efb7617b11678a45a399135d9ef54cc, type: 3}
   ImageObject:
   - {fileID: 1829254659097396}
   - {fileID: 1174118957803612}
