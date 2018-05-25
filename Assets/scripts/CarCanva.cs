@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class CarCanva : MonoBehaviour {
 
@@ -10,23 +11,24 @@ public class CarCanva : MonoBehaviour {
     private int displayedNb = 0;
     public const int maxDisplay = 3;
     private List<MovingType> displayedType = new List<MovingType>();
+    private Image[] imgUi;
 
     private void Start()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
             displayedType.Add(0);
+        for (int i = 0; i < maxDisplay; i++)
+        {
+            imgUi[i] = ImageObject[i].GetComponent<Image>();
+        }
     }
 
-    private int isIn(MovingType t, MovingType[] a)
+    private void updateImages()
     {
-        int nbr = 0;
-        foreach(MovingType x in a)
+        for (int i = 0; i < displayedNb; i++)
         {
-            if (x == t)
-                return nbr;
-            nbr++;
+            imgUi[i].sprite = ImageSprite[(int) displayedType[i] - 1];
         }
-        return -1;
     }
 
     public void addObject(MovingType t)

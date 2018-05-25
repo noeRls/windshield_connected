@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4490715320239300}
   - component: {fileID: 33077783367646128}
   - component: {fileID: 23170575250901870}
+  - component: {fileID: 114015984171333648}
   m_Layer: 0
   m_Name: Taxi
   m_TagString: Untagged
@@ -152,6 +153,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1073746249111208}
   m_Mesh: {fileID: 4300000, guid: 74edf5299fa1b5249bc1425dad584731, type: 3}
+--- !u!114 &114015984171333648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073746249111208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265d2992ce34b4b40aa0edb2ea08a5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageSprite:
+  - {fileID: 21300000, guid: 36d45e9ad1704cc4fb06eb07c2667774, type: 3}
+  - {fileID: 21300000, guid: 36d45e9ad1704cc4fb06eb07c2667774, type: 3}
+  - {fileID: 21300000, guid: 36d45e9ad1704cc4fb06eb07c2667774, type: 3}
+  ImageObject:
+  - {fileID: 1829254659097396}
+  - {fileID: 1174118957803612}
+  - {fileID: 1295970725557432}
 --- !u!114 &114037552225471908
 MonoBehaviour:
   m_ObjectHideFlags: 1
