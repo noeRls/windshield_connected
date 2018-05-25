@@ -11,11 +11,15 @@ public class Car : MonoBehaviour {
     public float accelerateForce = 0;
     public List<MovingType> objects = new List<MovingType>();
     public List<GameObject> gameObjects = new List<GameObject>();
+    private AudioSource aus;
+    public GameObject WarnLights;
+    public float WarnTime;
 
     private CarCanva cc;
 
     private void Start()
     {
+        aus = GetComponent<AudioSource>();
         cc = GetComponent<CarCanva>();
     }
 
@@ -39,6 +43,14 @@ public class Car : MonoBehaviour {
         return closest;
     }
 
+    IEnumerator Warn()
+    {
+        aus.Play();
+        WarnLights.SetActive(true);
+        yield return new WaitForSeconds(WarnTime);
+        WarnLights.SetActive(false);
+    }
+
     private void Update()
     {
         GameObject closest = getClosest();
@@ -47,8 +59,11 @@ public class Car : MonoBehaviour {
 
         if (closest)
         {
-
             dist = Vector3.Distance(closest.transform.position, transform.position);
+            if (dist < 5 && speed > maxSpeed / 4)
+            {
+                StartCoroutine(Warn());
+            }
         }
         if (dist < 7.5)
         {
