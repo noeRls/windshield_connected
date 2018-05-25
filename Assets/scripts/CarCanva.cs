@@ -11,15 +11,15 @@ public class CarCanva : MonoBehaviour {
     private int displayedNb = 0;
     public const int maxDisplay = 3;
     private List<MovingType> displayedType = new List<MovingType>();
-    private Image[] imgUi;
+    private List<Image> imgUi = new List<Image>();
 
     private void Start()
     {
         for (int i = 0; i < 4; i++)
-            displayedType.Add(0);
+            displayedType.Add(MovingType.NOTHING);
         for (int i = 0; i < maxDisplay; i++)
         {
-            imgUi[i] = ImageObject[i].GetComponent<Image>();
+            imgUi.Add(ImageObject[i].GetComponent<Image>());
         }
     }
 
@@ -35,7 +35,9 @@ public class CarCanva : MonoBehaviour {
     {
         int indexDisp = displayedType.IndexOf(t);
 
-        if (displayedNb  + 1 > maxDisplay || !(indexDisp == -1))
+        Debug.Log(displayedNb + 1 > maxDisplay);
+        Debug.Log(indexDisp);
+        if (displayedNb  + 1 > maxDisplay || indexDisp != -1)
             return;
         displayedNb++;
         ImageObject[displayedNb - 1].SetActive(true);

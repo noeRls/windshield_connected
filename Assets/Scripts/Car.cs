@@ -47,7 +47,7 @@ public class Car : MonoBehaviour {
 
         if (closest)
         {
-            Debug.Log(closest.GetComponent<movingObject>().type);
+
             dist = Vector3.Distance(closest.transform.position, transform.position);
         }
         if (dist < 7.5)
@@ -67,12 +67,12 @@ public class Car : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         MovingType type;
-
+        Debug.Log("Adding");
         if (!other.gameObject.CompareTag("Moving"))
             return;
         type = other.gameObject.GetComponent<movingObject>().type;
         objects.Add(type);
-        //cc.addObject(type);
+        cc.addObject(type);
         gameObjects.Add(other.gameObject);
     }
 
@@ -84,7 +84,7 @@ public class Car : MonoBehaviour {
             return;
         type = other.gameObject.GetComponent<movingObject>().type;
         objects.Remove(type);
-        //cc.removeObject(type);
+        cc.removeObject(type);
         gameObjects.Remove(other.gameObject);
     }
 }
