@@ -15,21 +15,34 @@ public class CarCanva : MonoBehaviour {
 	    	
 	}
 
-    void addObject(MovingType t)
+    private int isIn(MovingType t, MovingType[] a)
     {
-        if (displayedNb  + 1 > maxDisplay)
+        int nbr = 0;
+        foreach(MovingType x in a)
+        {
+            if (x == t)
+                return nbr;
+            nbr++;
+        }
+        return -1;
+    }
+
+    public void addObject(MovingType t)
+    {
+        int indexDisp = isIn(t, displayedType);
+        if (displayedNb  + 1 > maxDisplay || !(indexDisp == -1))
             return;
         displayedNb++;
         ImageObject[displayedNb - 1].SetActive(true);
         displayedType[displayedNb - 1] = t;
     }
 
-    void removeObject(MovingType t)
+    public void removeObject(MovingType t)
     {
-        if (displayedNb + 1 > maxDisplay)
+        int indexDisp = isIn(t, displayedType);
+        if (displayedNb == 0 || indexDisp == -1)
             return;
-        displayedNb++;
-        ImageObject[displayedNb - 1].SetActive(true);
+        ImageObject[indexDisp].SetActive(false);
         displayedNb--;
     }
 

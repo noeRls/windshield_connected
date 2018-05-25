@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum MovingType
 {
-    PERSON,
+    PERSON = 1,
     TRAFFIC_LIGHT,
     OBJECT,
 }
