@@ -15,7 +15,7 @@ public class CarCanva : MonoBehaviour {
 	    	
 	}
 
-    void addObject(MovingType t)
+    public void addObject(MovingType t)
     {
         if (displayedNb  + 1 > maxDisplay)
             return;
@@ -24,7 +24,7 @@ public class CarCanva : MonoBehaviour {
         displayedType[displayedNb - 1] = t;
     }
 
-    void removeObject(MovingType t)
+    public void removeObject(MovingType t)
     {
         if (displayedNb + 1 > maxDisplay)
             return;

@@ -12,6 +12,13 @@ public class Car : MonoBehaviour {
     public List<MovingType> objects = new List<MovingType>();
     public List<GameObject> gameObjects = new List<GameObject>();
 
+    private CarCanva cc;
+
+    private void Start()
+    {
+        cc = GetComponent<CarCanva>();
+    }
+
     GameObject getClosest()
     {
         GameObject closest = null;
@@ -65,16 +72,19 @@ public class Car : MonoBehaviour {
             return;
         type = other.gameObject.GetComponent<movingObject>().type;
         objects.Add(type);
-        other.gameObject.GetComponent<CarCanva>().addObject(type);
+        //cc.addObject(type);
         gameObjects.Add(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
+        MovingType type;
+
         if (!other.gameObject.CompareTag("Moving"))
             return;
-        objects.Remove(other.gameObject.GetComponent<movingObject>().type);
-        other.gameObject.GetComponent<CarCanva>().removeObject(type);
+        type = other.gameObject.GetComponent<movingObject>().type;
+        objects.Remove(type);
+        //cc.removeObject(type);
         gameObjects.Remove(other.gameObject);
     }
 }
