@@ -16,6 +16,8 @@ public class Car : MonoBehaviour {
     public GameObject SafeLights;
     public float WarnTime;
 
+    private GameObject lastKlaxoned;
+
     private CarCanva cc;
 
     private void Start()
@@ -78,8 +80,9 @@ public class Car : MonoBehaviour {
         }
         if (speed < 0.05 && decelerate)
             speed = 0;
-        if (closest && !objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT) && dist < 15.0f)
+        if (closest && !objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT) && dist < 15.0f && lastKlaxoned != closest)
         {
+            lastKlaxoned = closest;
             Warn();
         }
         transform.position += transform.forward * speed * Time.deltaTime;
