@@ -144,8 +144,8 @@ MonoBehaviour:
   status: 2
   timeToChange:
   - 10
-  - 3
-  - 4
+  - 6
+  - 6
   isRandom: 1
 --- !u!114 &114624201158571372
 MonoBehaviour:
