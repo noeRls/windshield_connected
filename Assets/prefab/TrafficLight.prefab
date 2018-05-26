@@ -146,6 +146,7 @@ MonoBehaviour:
   - 10
   - 3
   - 4
+  isRandom: 1
 --- !u!114 &114624201158571372
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,7 +9,7 @@ public class Car : MonoBehaviour {
     public float maxSpeed = 0;
     public float brakeForce = 0;
     public float accelerateForce = 0;
-    public List<MovingType> objects = new List<MovingType>();
+    public List<movingObject> objects = new List<movingObject>();
     public List<GameObject> gameObjects = new List<GameObject>();
     private AudioSource aus;
     public GameObject WarnLights;
@@ -78,12 +78,12 @@ public class Car : MonoBehaviour {
         }
         if (speed < 0.05 && decelerate)
             speed = 0;
-        if (closest && !objects.Any(s => s == MovingType.TRAFFIC_LIGHT) && dist < 15.0f)
+        if (closest && !objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT) && dist < 15.0f)
         {
             Warn();
         }
         transform.position += transform.forward * speed * Time.deltaTime;
-        SafeLights.SetActive(speed < 1 && objects.Any(s => s == MovingType.TRAFFIC_LIGHT));
+        SafeLights.SetActive(speed < 1 && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -95,9 +95,24 @@ public class Car : MonoBehaviour {
         obj = other.gameObject.GetComponent<movingObject>();
         if (obj && obj.toDisplay())
         {
-            objects.Add(obj.type);
+            objects.Add(obj);
             cc.addObject(obj.type);
             gameObjects.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        movingObject obj;
+
+        if (!other.gameObject.CompareTag("Moving"))
+            return;
+        obj = other.gameObject.GetComponent<movingObject>();
+        if (objects.Find(s => s == obj) && !obj.toDisplay())
+        {
+            objects.Remove(obj);
+            cc.removeObject(obj.type);
+            gameObjects.Remove(other.gameObject);
         }
     }
 
@@ -108,7 +123,7 @@ public class Car : MonoBehaviour {
         if (!other.gameObject.CompareTag("Moving"))
             return;
         obj = other.gameObject.GetComponent<movingObject>();
-        objects.Remove(obj.type);
+        objects.Remove(obj);
         cc.removeObject(obj.type);
         gameObjects.Remove(other.gameObject);
     }

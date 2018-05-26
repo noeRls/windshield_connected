@@ -20,7 +20,7 @@ public class Generate : MonoBehaviour {
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, nextGen) < 16)
+        if (Vector3.Distance(transform.position, nextGen) < 32)
         {
             GenerateBlock();
         }

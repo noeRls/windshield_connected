@@ -31,12 +31,12 @@ void Start () {
                 Instantiate(building, new Vector3(buildingSize * buildRight, 0, transform.position.z + (i * roadSize)), Quaternion.Euler(0, 90 * -buildRight, 0));
             }
             if (Random.Range(0f, 1f) < (crazyRate / z))
-                Instantiate(pedistrian, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
+                Instantiate(pedistrian, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.Euler(0, -90, 0));
             if (Random.Range(0f, 1f) < (trafficLightRate / z))
             {
                 Instantiate(trafficLightGO, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
                 Instantiate(cross, new Vector3(offsetRoad, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
-                Instantiate(pedistrian, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
+                Instantiate(pedistrian, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.Euler(0, -90, 0));
             }
             else
             {
