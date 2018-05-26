@@ -6,6 +6,12 @@ public class ManageTime : MonoBehaviour {
 
     private bool paused = false;
 
+    private void Start()
+    {
+        paused = true;
+        Time.timeScale = 0;
+    }
+
     private void Update()
     {
         bool pause = Input.GetKeyDown(KeyCode.Space);

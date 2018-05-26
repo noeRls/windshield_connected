@@ -60,8 +60,10 @@ MonoBehaviour:
   sider: {fileID: 1579767593021918, guid: 25db0aee756e70742880294acdd3fa85, type: 2}
   pedistrian: {fileID: 1754929857722664, guid: bf27dd8577df66e439d275b77bf13308, type: 2}
   road: {fileID: 1531256188702152, guid: 63eac88dadc1a7c4ebfef202a076bf25, type: 2}
+  tree: {fileID: 1711620148093200, guid: cf36f3d5184bc724084dc83d9c351de8, type: 2}
   roadSize: 8
   offsetRoad: 4
+  offsetTree: 5
   buildingSize: 15
   offsetPedistrian: 2
   siderSize: 30
