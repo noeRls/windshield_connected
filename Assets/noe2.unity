@@ -1192,12 +1192,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab67366be4151da42bf4ed75ef3d8b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: 2
+  status: 1
   timeToChange:
-  - 1
-  - 1
-  - 1
-  isRandom: 1
+  - 8
+  - 6
+  - 6
+  isRandom: 0
 --- !u!54 &1253705521
 Rigidbody:
   m_ObjectHideFlags: 0

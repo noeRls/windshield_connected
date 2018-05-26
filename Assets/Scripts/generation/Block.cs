@@ -46,8 +46,8 @@ void Start () {
             {
                 Instantiate(road, new Vector3(oX + -offsetRoad, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
             }
-            Instantiate(sider, new Vector3(oX + (roadSize / 2 + siderSize / 2), 0, transform.position.z + (i * roadSize)), Quaternion.identity);
-            Instantiate(sider, new Vector3(oX + -(roadSize / 2 + siderSize / 2), 0, transform.position.z + (i * roadSize)), Quaternion.identity);        
+            Instantiate(sider, new Vector3(oX + (roadSize / 2 + siderSize / 2), -0.3f, transform.position.z + (i * roadSize)), Quaternion.identity);
+            Instantiate(sider, new Vector3(oX + -(roadSize / 2 + siderSize / 2), -0.3f, transform.position.z + (i * roadSize)), Quaternion.identity);        
         }
     }
 }
