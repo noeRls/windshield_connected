@@ -66,10 +66,6 @@ public class Car : MonoBehaviour {
         if (closest)
         {
             dist = Vector3.Distance(closest.transform.position, transform.position);
-            if (dist < 5 && speed > maxSpeed / 10)
-            {
-                Warn();
-            }
         }
         if (dist < 12.5)
         {
@@ -82,31 +78,38 @@ public class Car : MonoBehaviour {
         }
         if (speed < 0.05 && decelerate)
             speed = 0;
+        if (closest && !objects.Any(s => s == MovingType.TRAFFIC_LIGHT) && dist < 15.0f)
+        {
+            Warn();
+        }
         transform.position += transform.forward * speed * Time.deltaTime;
         SafeLights.SetActive(speed < 1 && objects.Any(s => s == MovingType.TRAFFIC_LIGHT));
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        MovingType type;
+        movingObject obj;
         Debug.Log("Adding");
         if (!other.gameObject.CompareTag("Moving"))
             return;
-        type = other.gameObject.GetComponent<movingObject>().type;
-        objects.Add(type);
-        cc.addObject(type);
-        gameObjects.Add(other.gameObject);
+        obj = other.gameObject.GetComponent<movingObject>();
+        if (obj && obj.toDisplay())
+        {
+            objects.Add(obj.type);
+            cc.addObject(obj.type);
+            gameObjects.Add(other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        MovingType type;
+        movingObject obj;
 
         if (!other.gameObject.CompareTag("Moving"))
             return;
-        type = other.gameObject.GetComponent<movingObject>().type;
-        objects.Remove(type);
-        cc.removeObject(type);
+        obj = other.gameObject.GetComponent<movingObject>();
+        objects.Remove(obj.type);
+        cc.removeObject(obj.type);
         gameObjects.Remove(other.gameObject);
     }
 }

@@ -14,5 +14,8 @@ public class movingObject : MonoBehaviour {
 
     public MovingType type;
 
-
+    public virtual bool toDisplay()
+    {
+        return true;
+    }
 }
