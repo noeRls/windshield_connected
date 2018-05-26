@@ -48,10 +48,12 @@ public class Car : MonoBehaviour {
 
     IEnumerator AnimWarn()
     {
+        cc.setState(State.STOP);
         aus.Play();
         WarnLights.SetActive(true);
         yield return new WaitForSeconds(WarnTime);
         WarnLights.SetActive(false);
+        cc.setState(State.NOTHING);
     }
 
     public void Warn()
@@ -87,6 +89,7 @@ public class Car : MonoBehaviour {
         }
         transform.position += transform.forward * speed * Time.deltaTime;
         SafeLights.SetActive(speed < 1 && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT));
+        cc.setContent(objects.Count != 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -96,9 +99,10 @@ public class Car : MonoBehaviour {
         if (!other.gameObject.CompareTag("Moving"))
             return;
         obj = other.gameObject.GetComponent<movingObject>();
-        if (obj && obj.toDisplay())
+        if (obj && obj.type == MovingType.PERSON)
         {
             objects.Add(obj);
+            cc.addObject(obj.type);
             gameObjects.Add(other.gameObject);
         }
     }
@@ -110,10 +114,9 @@ public class Car : MonoBehaviour {
         if (!other.gameObject.CompareTag("Moving"))
             return;
         obj = other.gameObject.GetComponent<movingObject>();
-        if (objects.Find(s => s == obj) && !obj.toDisplay())
-        {
-            objects.Remove(obj);
-        }
+        if (obj.type != MovingType.TRAFFIC_LIGHT)
+            return;
+        cc.setState(obj.toDisplay() ? State.PASS : State.STOP);
     }
 
     private void OnTriggerExit(Collider other)
@@ -123,7 +126,11 @@ public class Car : MonoBehaviour {
         if (!other.gameObject.CompareTag("Moving"))
             return;
         obj = other.gameObject.GetComponent<movingObject>();
-        objects.Remove(obj);
-        gameObjects.Remove(other.gameObject);
+        if (obj.type == MovingType.PERSON)
+        {
+            objects.Remove(obj);
+            cc.removeObject(obj.type);
+            gameObjects.Remove(other.gameObject);
+        }
     }
 }
