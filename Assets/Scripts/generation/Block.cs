@@ -38,7 +38,7 @@ void Start () {
             if (Random.Range(0f, 1f) < (trafficLightRate / z))
             {
                 Debug.Log("CROSS");
-                Instantiate(trafficLightGO, new Vector3(oX + roadSize / 2 + 1, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
+                Instantiate(trafficLightGO, new Vector3(oX + roadSize / 2 + 1, 0, transform.position.z + (i * roadSize) - 2.5f), Quaternion.identity);
                 Instantiate(cross, new Vector3(oX + -offsetRoad, 0, transform.position.z + (i * roadSize)), Quaternion.Euler(0, -180f, 0f));
                 Instantiate(pedistrian, new Vector3(oX + roadSize / 2 + offsetPedistrian, 1, transform.position.z + (i * roadSize)), Quaternion.Euler(0, -90, 0));
             }
@@ -46,8 +46,8 @@ void Start () {
             {
                 Instantiate(road, new Vector3(oX + -offsetRoad, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
             }
-            Instantiate(sider, new Vector3(oX + (roadSize / 2 + siderSize / 2), 0, transform.position.z + (i * roadSize)), Quaternion.identity);
-            Instantiate(sider, new Vector3(oX + -(roadSize / 2 + siderSize / 2), 0, transform.position.z + (i * roadSize)), Quaternion.identity);        
+            Instantiate(sider, new Vector3(oX + (roadSize / 2 + siderSize / 2 - 1f), -0.22f, transform.position.z + (i * roadSize)), Quaternion.identity);
+            Instantiate(sider, new Vector3(oX + -(roadSize / 2 + siderSize / 2 - 1f), -0.22f, transform.position.z + (i * roadSize)), Quaternion.identity);        
         }
     }
 }
