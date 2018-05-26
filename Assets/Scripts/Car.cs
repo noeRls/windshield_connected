@@ -11,8 +11,6 @@ public class Car : MonoBehaviour {
     public float accelerateForce = 0;
     public List<movingObject> objects = new List<movingObject>();
     private AudioSource aus;
-    public GameObject WarnLights;
-    public GameObject SafeLights;
     public float WarnTime;
     private bool warning = false;
 
@@ -51,9 +49,7 @@ public class Car : MonoBehaviour {
         warning = true;
         cc.setState(State.STOP);
         aus.Play();
-        WarnLights.SetActive(true);
         yield return new WaitForSeconds(WarnTime);
-        WarnLights.SetActive(false);
         cc.setState(State.NOTHING);
         warning = false;
     }
@@ -102,11 +98,10 @@ public class Car : MonoBehaviour {
             Warn();
         }
         transform.position += transform.forward * speed * Time.deltaTime;
-        SafeLights.SetActive(speed < 1 && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT));
         if (!warning && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT && s.toDisplay()))
         {
             cc.setState(State.PASS);
-        } else if (!warning && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT && !s.toDisplay()))
+        } else if (speed > 1 && !warning && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT && !s.toDisplay()))
         {
             cc.setState(State.STOP);
         }
