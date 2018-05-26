@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 114271427155669498}
   - component: {fileID: 136595473812200066}
   - component: {fileID: 54237448881970448}
+  - component: {fileID: 114748325439048728}
   m_Layer: 0
   m_Name: Dangerous
   m_TagString: Moving
@@ -95,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1754929857722664}
   m_LocalRotation: {x: -0, y: -0.6175436, z: -0, w: 0.7865367}
-  m_LocalPosition: {x: 2.68, y: 1.22, z: 20.19}
+  m_LocalPosition: {x: -1.2355142, y: 1.6701956, z: 104.81618}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4795350301194082}
@@ -170,6 +171,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+--- !u!114 &114748325439048728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1754929857722664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712b1ff083b2f9c4098d94797128d1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136595473812200066
 CapsuleCollider:
   m_ObjectHideFlags: 1

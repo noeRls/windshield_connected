@@ -9,18 +9,18 @@ public class Generate : MonoBehaviour {
 
     private void Start()
     {
-        nextGen = transform.position + new Vector3(0, 0, 8);
+        nextGen = new Vector3(0, 0, 8);
     }
 
     private void GenerateBlock()
     {
         Instantiate(block, nextGen, Quaternion.identity);
-        nextGen += new Vector3(0, 0, 8);
+        nextGen += new Vector3(0, 0, 15 * 8);
     }
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, nextGen) < 8)
+        if (Vector3.Distance(transform.position, nextGen) < 16)
         {
             GenerateBlock();
         }
