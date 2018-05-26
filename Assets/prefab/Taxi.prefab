@@ -648,8 +648,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.37, y: 3.4699998, z: 22.56831}
-  m_Center: {x: 0, y: 0.97, z: 13.159155}
+  m_Size: {x: 6.37, y: 3.4699998, z: 27.092785}
+  m_Center: {x: 0, y: 0.97, z: 10.896917}
 --- !u!81 &81744317442772752
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   maxSpeed: 25
   brakeForce: 2.25
   accelerateForce: 0.4
-  objects: 
+  objects: []
   gameObjects: []
   WarnLights: {fileID: 1862135116351362}
   SafeLights: {fileID: 1457922660096150}
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c54990508757348891a3523254cb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block: {fileID: 0}
+  block: {fileID: 1974343703491422, guid: fe2dcfd889d62eb4b9b253ceb6dbcd2e, type: 2}
 --- !u!114 &114196984870409644
 MonoBehaviour:
   m_ObjectHideFlags: 1

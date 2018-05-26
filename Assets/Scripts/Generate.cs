@@ -9,7 +9,7 @@ public class Generate : MonoBehaviour {
 
     private void Start()
     {
-        nextGen = new Vector3(-4f, 0, 8);
+        nextGen = new Vector3(-4f, 0, 48);
     }
 
     private void GenerateBlock()
