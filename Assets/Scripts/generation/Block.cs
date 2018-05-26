@@ -11,12 +11,12 @@ public class Block : MonoBehaviour {
 
     public float crazyRate = 0.5f;
     public float trafficLightRate = 0.5f;
-    GameObject trafficLightGO;
-    GameObject cross;
-    GameObject building;
-    GameObject sider;
-    GameObject pedistrian;
-    GameObject road;
+    public GameObject trafficLightGO;
+    public GameObject cross;
+    public GameObject building;
+    public GameObject sider;
+    public GameObject pedistrian;
+    public GameObject road;
     public float roadSize = 8f;
 
 // Use this for initialization
