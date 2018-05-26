@@ -21,6 +21,7 @@ public class Block : MonoBehaviour {
     public float offsetRoad = 4f;
     public float buildingSize = 15f;
     public float offsetPedistrian = 2f;
+    public float siderSize = 30f;
 
 // Use this for initialization
 void Start () {
@@ -45,6 +46,8 @@ void Start () {
             {
                 Instantiate(road, new Vector3(oX + -offsetRoad, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
             }
+            Instantiate(sider, new Vector3(oX + (roadSize / 2 + siderSize / 2), 0, transform.position.z + (i * roadSize)), Quaternion.identity);
+            Instantiate(sider, new Vector3(oX + -(roadSize / 2 + siderSize / 2), 0, transform.position.z + (i * roadSize)), Quaternion.identity);        
         }
-	}
+    }
 }
