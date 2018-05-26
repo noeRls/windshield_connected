@@ -10,7 +10,6 @@ public class Car : MonoBehaviour {
     public float brakeForce = 0;
     public float accelerateForce = 0;
     public List<movingObject> objects = new List<movingObject>();
-    public List<GameObject> gameObjects = new List<GameObject>();
     private AudioSource aus;
     public GameObject WarnLights;
     public GameObject SafeLights;
@@ -32,15 +31,15 @@ public class Car : MonoBehaviour {
         float min = 10;
         float tmp = 0;
 
-        if (gameObjects.Count == 0)
+        if (objects.Count == 0)
             return null;
-        foreach (var i in gameObjects)
+        foreach (var i in objects)
         {
             tmp = Vector3.Distance(i.transform.position, transform.position);
             if (tmp < min)
             {
                 min = tmp;
-                closest = i;
+                closest = i.gameObject;
             }
         }
         return closest;
@@ -59,6 +58,18 @@ public class Car : MonoBehaviour {
     public void Warn()
     {
         StartCoroutine(AnimWarn());
+    }
+
+    private void UpdateTrafficLights()
+    {
+        foreach(var i in objects)
+        {
+            if (i.type == MovingType.TRAFFIC_LIGHT && !i.toDisplay())
+            {
+                objects.Remove(i);
+                break;
+            }
+        }
     }
 
     private void Update()
@@ -90,33 +101,17 @@ public class Car : MonoBehaviour {
         transform.position += transform.forward * speed * Time.deltaTime;
         SafeLights.SetActive(speed < 1 && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT));
         cc.setContent(objects.Count != 0);
+        UpdateTrafficLights();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         movingObject obj;
-        Debug.Log("Adding");
-        if (!other.gameObject.CompareTag("Moving"))
-            return;
-        obj = other.gameObject.GetComponent<movingObject>();
-        if (obj && obj.type == MovingType.PERSON)
-        {
-            objects.Add(obj);
-            cc.addObject(obj.type);
-            gameObjects.Add(other.gameObject);
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        movingObject obj;
 
         if (!other.gameObject.CompareTag("Moving"))
             return;
         obj = other.gameObject.GetComponent<movingObject>();
-        if (obj.type != MovingType.TRAFFIC_LIGHT)
-            return;
-        cc.setState(obj.toDisplay() ? State.PASS : State.STOP);
+        objects.Add(obj);
     }
 
     private void OnTriggerExit(Collider other)
@@ -126,11 +121,6 @@ public class Car : MonoBehaviour {
         if (!other.gameObject.CompareTag("Moving"))
             return;
         obj = other.gameObject.GetComponent<movingObject>();
-        if (obj.type == MovingType.PERSON)
-        {
-            objects.Remove(obj);
-            cc.removeObject(obj.type);
-            gameObjects.Remove(other.gameObject);
-        }
+        objects.Remove(obj);
     }
 }
