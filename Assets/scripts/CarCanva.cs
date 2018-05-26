@@ -4,6 +4,13 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 
+public enum State
+{
+    NOTHING,
+    PASS,
+    STOP
+}
+
 public class CarCanva : MonoBehaviour {
 
     public Sprite[] ImageSprite;
@@ -60,5 +67,15 @@ public class CarCanva : MonoBehaviour {
         }
         displayedNb--;
         updateImages();
+    }
+
+    public void setContent(bool p)
+    {
+
+    }
+
+    public void setState(State s)
+    {
+
     }
 }
