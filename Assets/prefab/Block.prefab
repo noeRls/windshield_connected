@@ -51,13 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095e5ba3886763f4c999bda8afb4c1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crazyRate: 0.5
-  trafficLightRate: 0.5
+  crazyRate: 2.01
+  trafficLightRate: 2.1
   trafficLightGO: {fileID: 1582624347268236, guid: 3e569883524baef4f84c44d969c3d88d,
     type: 2}
-  cross: {fileID: 1819768725443240, guid: 315227e2a00da16429e8650bee72ccb5, type: 2}
+  cross: {fileID: 1076696583642514, guid: 315227e2a00da16429e8650bee72ccb5, type: 2}
   building: {fileID: 1531150145072304, guid: 683d5cd3632f31940a16794977b3d4f4, type: 2}
   sider: {fileID: 0}
   pedistrian: {fileID: 1754929857722664, guid: bf27dd8577df66e439d275b77bf13308, type: 2}
   road: {fileID: 1531256188702152, guid: 63eac88dadc1a7c4ebfef202a076bf25, type: 2}
   roadSize: 8
+  offsetRoad: 4
+  buildingSize: 15
+  offsetPedistrian: 2

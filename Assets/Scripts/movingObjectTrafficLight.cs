@@ -13,6 +13,6 @@ public class movingObjectTrafficLight : movingObject {
 
     public override bool toDisplay()
     {
-        return (tl.status == LightStatus.RED);
+        return (tl.status != LightStatus.GREEN);
     }
 }
