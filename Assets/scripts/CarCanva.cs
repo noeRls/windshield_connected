@@ -13,69 +13,33 @@ public enum State
 
 public class CarCanva : MonoBehaviour {
 
-    public Sprite[] ImageSprite;
-    public GameObject[] ImageObject;
-    private int displayedNb = 0;
-    public const int maxDisplay = 3;
-    private List<MovingType> displayedType = new List<MovingType>();
-    private List<Image> imgUi = new List<Image>();
+    public Sprite[] stateSprite;
+    public GameObject stateObj;
+    public GameObject contentObj;
+    private Image stateImg;
+    private Image contentImg;
 
     private void Start()
     {
-        for (int i = 0; i < 4; i++)
-            displayedType.Add(MovingType.NOTHING);
-        for (int i = 0; i < maxDisplay; i++)
-        {
-            imgUi.Add(ImageObject[i].GetComponent<Image>());
-        }
-    }
-
-    private void updateImages()
-    {
-        for (int i = 0; i < displayedNb; i++)
-        {
-            if (imgUi[i].sprite != ImageSprite[(int) displayedType[i] - 1])
-            {
-                imgUi[i].sprite = ImageSprite[(int) displayedType[i] - 1];
-            }
-        }
-    }
-
-    public void addObject(MovingType t)
-    {
-        int indexDisp = displayedType.IndexOf(t);
-
-        Debug.Log(t);
-        if (displayedNb  + 1 > maxDisplay || indexDisp != -1)
-            return;
-        displayedNb++;
-        ImageObject[displayedNb - 1].SetActive(true);
-        displayedType[displayedNb - 1] = t;
-        updateImages();
-    }
-
-    public void removeObject(MovingType t)
-    {
-        int indexDisp = displayedType.IndexOf(t);
-
-        if (displayedNb == 0 || indexDisp == -1)
-            return;
-        ImageObject[displayedNb - 1].SetActive(false);
-        for (int i = indexDisp; i < displayedType.Count - 1; i++)
-        {
-            displayedType[i] = displayedType[i + 1];
-        }
-        displayedNb--;
-        updateImages();
+        stateImg = stateObj.GetComponent<Image>();
+        contentImg = contentObj.GetComponent<Image>();
     }
 
     public void setContent(bool p)
     {
-
+        contentObj.SetActive(p);
     }
 
     public void setState(State s)
     {
-
+        if ((int) s == 0)
+        {
+            stateObj.SetActive(false);
+        }
+        else
+        {
+            stateObj.SetActive(true);
+        }
+        stateImg.sprite = stateSprite[(int) s];
     }
 }

@@ -99,7 +99,6 @@ public class Car : MonoBehaviour {
         if (obj && obj.toDisplay())
         {
             objects.Add(obj);
-            cc.addObject(obj.type);
             gameObjects.Add(other.gameObject);
         }
     }
@@ -114,8 +113,6 @@ public class Car : MonoBehaviour {
         if (objects.Find(s => s == obj) && !obj.toDisplay())
         {
             objects.Remove(obj);
-            cc.removeObject(obj.type);
-            gameObjects.Remove(other.gameObject);
         }
     }
 
@@ -127,7 +124,6 @@ public class Car : MonoBehaviour {
             return;
         obj = other.gameObject.GetComponent<movingObject>();
         objects.Remove(obj);
-        cc.removeObject(obj.type);
         gameObjects.Remove(other.gameObject);
     }
 }
