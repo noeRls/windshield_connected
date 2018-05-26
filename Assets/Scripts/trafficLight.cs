@@ -12,10 +12,16 @@ public enum LightStatus
 public class trafficLight : MonoBehaviour {
 
     public LightStatus status;
+    public float timeToChange = 10;
+    float time = 0;
 
-    private void Start()
+    private void Update()
     {
-        
+        time += Time.deltaTime;
+        if (time > timeToChange)
+        {
+            status = (LightStatus) (((int) status + 1) % 3);
+            time = 0;
+        }
     }
-
 }

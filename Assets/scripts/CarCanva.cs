@@ -27,7 +27,10 @@ public class CarCanva : MonoBehaviour {
     {
         for (int i = 0; i < displayedNb; i++)
         {
-            imgUi[i].sprite = ImageSprite[(int) displayedType[i] - 1];
+            if (imgUi[i].sprite != ImageSprite[(int) displayedType[i] - 1])
+            {
+                imgUi[i].sprite = ImageSprite[(int) displayedType[i] - 1];
+            }
         }
     }
 

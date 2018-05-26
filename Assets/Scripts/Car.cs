@@ -44,7 +44,7 @@ public class Car : MonoBehaviour {
         return closest;
     }
 
-    IEnumerator Warn()
+    IEnumerator AnimWarn()
     {
         aus.Play();
         WarnLights.SetActive(true);
@@ -52,10 +52,15 @@ public class Car : MonoBehaviour {
         WarnLights.SetActive(false);
     }
 
+    public void Warn()
+    {
+        StartCoroutine(AnimWarn());
+    }
+
     private void Update()
     {
         GameObject closest = getClosest();
-        float dist = 8;
+        float dist = 800;
         bool decelerate = false;
 
         if (closest)
@@ -63,10 +68,10 @@ public class Car : MonoBehaviour {
             dist = Vector3.Distance(closest.transform.position, transform.position);
             if (dist < 5 && speed > maxSpeed / 10)
             {
-                StartCoroutine(Warn());
+                Warn();
             }
         }
-        if (dist < 7.5)
+        if (dist < 12.5)
         {
             decelerate = true;
             speed = Mathf.Lerp(speed, 0, brakeForce * (10.0f - dist) * Time.deltaTime);
