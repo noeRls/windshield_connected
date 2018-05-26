@@ -14,6 +14,7 @@ public class Car : MonoBehaviour {
     public GameObject WarnLights;
     public GameObject SafeLights;
     public float WarnTime;
+    private bool warning = false;
 
     private GameObject lastKlaxoned;
 
@@ -47,12 +48,14 @@ public class Car : MonoBehaviour {
 
     IEnumerator AnimWarn()
     {
+        warning = true;
         cc.setState(State.STOP);
         aus.Play();
         WarnLights.SetActive(true);
         yield return new WaitForSeconds(WarnTime);
         WarnLights.SetActive(false);
         cc.setState(State.NOTHING);
+        warning = false;
     }
 
     public void Warn()
@@ -100,7 +103,18 @@ public class Car : MonoBehaviour {
         }
         transform.position += transform.forward * speed * Time.deltaTime;
         SafeLights.SetActive(speed < 1 && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT));
-        cc.setContent(objects.Count != 0);
+        if (!warning && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT && s.toDisplay()))
+        {
+            cc.setState(State.PASS);
+        } else if (!warning && objects.Any(s => s.type == MovingType.TRAFFIC_LIGHT && !s.toDisplay()))
+        {
+            cc.setState(State.STOP);
+        }
+        else if (!warning)
+        {
+            cc.setState(State.NOTHING);
+        }
+        cc.setContent(objects.Where(s => s.type == MovingType.PERSON).Count() != 0);
         UpdateTrafficLights();
     }
 
