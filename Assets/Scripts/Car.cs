@@ -69,10 +69,10 @@ public class Car : MonoBehaviour {
         {
             dist = Vector3.Distance(closest.transform.position, transform.position);
         }
-        if (dist < 12.5)
+        if (dist < 15f)
         {
             decelerate = true;
-            speed = Mathf.Lerp(speed, 0, brakeForce * (10.0f - dist) * Time.deltaTime);
+            speed = Mathf.Lerp(speed, 0, brakeForce * (15f / dist) * Time.deltaTime);
         }
         else
         {
