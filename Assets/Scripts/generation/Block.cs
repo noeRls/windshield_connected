@@ -18,24 +18,29 @@ public class Block : MonoBehaviour {
     public GameObject pedistrian;
     public GameObject road;
     public float roadSize = 8f;
+    public float offsetRoad = 4f;
+    public float buildingSize = 15f;
 
 // Use this for initialization
 void Start () {
         for (int i = 0; i < z; i++)
         {
             if (i % buildingPerRoad == 0)
-                Instantiate(building, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
+            {
+                int buildRight = Random.Range(0f, 1f) < 0.5f ? -1 : 1;
+                Instantiate(building, new Vector3(buildingSize * buildRight, 0, transform.position.z + (i * roadSize)), Quaternion.Euler(0, 90 * -buildRight, 0));
+            }
             if (Random.Range(0f, 1f) < (crazyRate / z))
                 Instantiate(pedistrian, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
             if (Random.Range(0f, 1f) < (trafficLightRate / z))
             {
                 Instantiate(trafficLightGO, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
-                Instantiate(cross, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
+                Instantiate(cross, new Vector3(offsetRoad, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
                 Instantiate(pedistrian, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
             }
             else
             {
-                Instantiate(road, new Vector3(0, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
+                Instantiate(road, new Vector3(-offsetRoad, 0, transform.position.z + (i * roadSize)), Quaternion.identity);
             }
         }
 	}
